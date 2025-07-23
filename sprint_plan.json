@@ -1,1 +1,25 @@
-null
+{
+  "sprint": 1,
+  "tasks": [
+    {
+      "id": 1,
+      "title": "User Authentication Module",
+      "points": 8
+    },
+    {
+      "id": 2,
+      "title": "Database Schema Design",
+      "points": 5
+    },
+    {
+      "id": 3,
+      "title": "API Endpoint for User Data",
+      "points": 4
+    },
+    {
+      "id": 4,
+      "title": "Frontend UI for Login Page",
+      "points": 3
+    }
+  ]
+}

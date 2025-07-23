@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>TAO Meta-Loop Diagram</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+  <div class="mermaid">
+    graph TD
+      A[Start TAO Iteration] --> B[Think: Plan with Self-Learning from KG]
+      B --> C[Act: Execute with Self-Correcting Retries]
+      C --> D[Observe: Analyze Metrics & Insights]
+      D --> E[Meta-Optimize: Adjust Parameters & Update KG]
+      E --> A[Next Iteration]
+      subgraph Meta-Loops
+          F[Self-Analysis] --> D
+          G[Self-Correcting] --> C
+          H[Self-Learning] --> B
+          I[Self-Optimization] --> E
+      end
+  </div>
+</body>
+</html>
