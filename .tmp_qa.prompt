@@ -1,0 +1,15 @@
+Run QA on staging URL **http://localhost:8000**
+
+Acceptance criteria:
+
+```json
+[]
+```
+
+Return **ONLY** valid JSON:
+{
+  "score": <float>,
+  "pass": <bool>,
+  "bugs": [{"title": "...", "detail": "..."}],
+  "suggestions": ["..."]
+}

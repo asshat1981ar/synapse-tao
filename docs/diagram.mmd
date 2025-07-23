@@ -1,0 +1,12 @@
+graph TD
+    A[Start TAO Iteration] --> B[Think: Plan with Self-Learning from KG]
+    B --> C[Act: Execute with Self-Correcting Retries]
+    C --> D[Observe: Analyze Metrics & Insights]
+    D --> E[Meta-Optimize: Adjust Parameters & Update KG]
+    E --> A[Next Iteration]
+    subgraph Meta-Loops
+        F[Self-Analysis] --> D
+        G[Self-Correcting] --> C
+        H[Self-Learning] --> B
+        I[Self-Optimization] --> E
+    end

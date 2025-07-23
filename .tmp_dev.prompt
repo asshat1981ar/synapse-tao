@@ -1,0 +1,7 @@
+Generate code for this task in :
+
+```json
+{"id":1,"title":"Fix login issue","points":5}
+```
+
+Return a *unified diff* (`diff --git`) and include unit tests.

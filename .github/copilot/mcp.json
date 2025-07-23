@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "mcp_server": {
+      "type": "local",
+      "command": "/home/asshat1981ar/.local/bin/mcp-server",
+      "args": [],
+      "tools": [
+        "*"
+      ]
+    },
+    "deepseek_mcp_server": {
+      "type": "local",
+      "command": "/bin/deepseek-mcp-server",
+      "args": [],
+      "tools": [
+        "*"
+      ]
+    },
+    "notion_mcp_server": {
+      "type": "local",
+      "command": "/bin/notion-mcp-server",
+      "args": [],
+      "tools": [
+        "*"
+      ]
+    },
+    "sentry": {
+      "type": "local",
+      "command": "npx",
+      "args": [
+        "@sentry/mcp-server@latest"
+      ],
+      "tools": [
+        "*"
+      ]
+    }
+  }
+}

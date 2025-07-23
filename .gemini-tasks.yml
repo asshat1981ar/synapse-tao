@@ -1,0 +1,66 @@
+version: "1.0"
+tasks:
+
+  - id: SC-007
+    name: Implement Self-Analysis Module in TAO Observe Stage
+    description: >
+      Add runtime metric evaluation and lesson capture to the Observe stage
+      of the TAO loop.
+    steps:
+      - Add a `SelfAnalysisEngine` class to compute and compare metrics (coverage delta, errors, latency)
+      - Modify `observeStage()` in `taoLoopService.ts` to use this engine
+      - Log outputs and update orchestrator knowledge graph
+      - Add unit tests for analysis logic
+    success:
+      - `pnpm test` passes
+      - Logs show analysis + KG update
+      - Diagram updated in `diagram.mmd`
+
+  - id: SC-008
+    name: Integrate Self-Correcting Feedback in TAO Act Stage
+    description: >
+      Add automatic retry, error-patching, and correction logic during plan execution
+      to ensure the Act stage can recover and improve autonomously.
+    steps:
+      - Create `SelfCorrector` module
+      - Enhance `actStage()` to:
+          - Retry known error patterns
+          - Patch or fallback as needed
+          - Log corrections
+      - Write tests to simulate execution failures and auto-corrections
+    success:
+      - All tests pass
+      - Retry logic proven
+      - Logs confirm fallback mechanisms
+
+  - id: SC-009
+    name: Add Self-Learning to Think Stage
+    description: >
+      Implement learning from past sprints by integrating knowledge graph data into the
+      Think stage. Plans should reflect learned lessons and historical outcomes.
+    steps:
+      - Build `SelfLearner` utility
+      - Update `thinkStage()` to query past sprint knowledge
+      - Modify plan structure to include learned parameters
+      - Add synthetic test plan validations
+    success:
+      - Plans reflect lessons from KG
+      - Learning path logged
+      - Tests simulate learning-driven planning
+
+  - id: META
+    name: TAO Meta-Loop Optimization Enhancement
+    description: >
+      Improve `optimizeLoop()` logic with dynamic threshold tuning and advanced metrics.
+      Enable predictive adjustments based on trends in observed data.
+    steps:
+      - Refactor `optimizeLoop()` to:
+          - Tune coverage/error thresholds in real time
+          - Detect anomalies in metrics
+          - Recommend systemic adjustments
+      - Document new optimization process
+      - Add frontend-ready metrics schema
+    success:
+      - Updated loop logic validated
+      - Metrics reflect optimization
+      - Frontend integration spec documented

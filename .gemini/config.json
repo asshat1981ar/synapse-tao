@@ -1,0 +1,11 @@
+{
+  "project": "SynapseConnect_TAO",
+  "entrypoint": "server/services/taoLoopService.ts",
+  "tasksFile": "./gemini-tasks.yml",
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@smithery/cli", "run", "@smithery-ai/github"]
+    }
+  }
+}
