@@ -1,0 +1,2 @@
+Ingest QA report (stdin) and update backlog accordingly.
+Return the *merged* backlog.json in full.

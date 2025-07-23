@@ -1,0 +1,7 @@
+Generate code for this task in $REPO:
+
+```json
+$TASK_JSON
+```
+
+Return a *unified diff* (`diff --git`) and include unit tests.

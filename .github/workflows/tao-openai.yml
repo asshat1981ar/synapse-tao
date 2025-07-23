@@ -1,0 +1,17 @@
+name: TAO Loop (OpenAI)
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  run-loop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install jq + curl
+        run: sudo apt-get update && sudo apt-get install -y jq curl
+      - name: Run TAO loop
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: bash scripts/tao-loop.sh

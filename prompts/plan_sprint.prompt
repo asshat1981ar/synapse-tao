@@ -1,0 +1,12 @@
+```json
+$BACKLOG_JSON
+```
+Plan the next sprint for capacity **$CAPACITY** story‑points.
+
+Return **ONLY** valid JSON:
+{
+  "sprint": <int>,
+  "tasks": [
+    {"id": <int>, "title": <string>, "points": <int>}
+  ]
+}

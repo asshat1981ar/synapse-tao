@@ -1,0 +1,15 @@
+Run QA on staging URL **$STAGING_URL**
+
+Acceptance criteria:
+
+```json
+$CRITERIA_JSON
+```
+
+Return **ONLY** valid JSON:
+{
+  "score": <float>,
+  "pass": <bool>,
+  "bugs": [{"title": "...", "detail": "..."}],
+  "suggestions": ["..."]
+}

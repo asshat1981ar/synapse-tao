@@ -1,0 +1,12 @@
+```json
+{"sprint":0,"stories":[]}
+```
+Plan the next sprint for capacity **20** story‑points.
+
+Return **ONLY** valid JSON:
+{
+  "sprint": <int>,
+  "tasks": [
+    {"id": <int>, "title": <string>, "points": <int>}
+  ]
+}
