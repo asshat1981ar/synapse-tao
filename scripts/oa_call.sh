@@ -11,29 +11,35 @@ fi
 sys_file="$1"
 user_file="$2"
 
-MODEL="${OPENAI_MODEL:-gpt-4o-mini}"
+MODEL="${OPENAI_MODEL:-gpt-4o}"
 ENDPOINT="https://api.openai.com/v1/chat/completions"
 
-sys_prompt=$(cat "$sys_file")
-usr_prompt=$(cat "$user_file")
+# Create a temporary file for the payload
+PAYLOAD_FILE=$(mktemp)
 
-read -r -d '' payload <<JSON
-{
-  "model": "${MODEL}",
-  "messages": [
-    {"role": "system", "content": $(cat "$sys_file" | jq -Rs .)},
-    {"role": "user",  "content": $(cat "$user_file" | jq -Rs .)}
-  ],
-  "temperature": 0.3,
-  "response_format": {"type":"json_object"}
-}
-JSON
+# Construct the JSON payload using jq for robust escaping
+jq -n \
+  --arg sys_content "$(cat "$sys_file")" \
+  --arg user_content "$(cat "$user_file")" \
+  --arg model "${MODEL}" \
+  '{
+    "model": $model,
+    "messages": [
+      {"role": "system", "content": $sys_content},
+      {"role": "user",  "content": $user_content}
+    ],
+    "temperature": 0.3,
+    "response_format": {"type":"json_object"}
+  }' > "$PAYLOAD_FILE"
 
 resp=$(curl -sS -w '\n%{http_code}' \
   -H "Authorization: Bearer ${OPENAI_API_KEY}" \
   -H "Content-Type: application/json" \
-  --data "$payload" \
+  --data @"$PAYLOAD_FILE" \
   "$ENDPOINT")
+
+# Clean up the temporary file
+rm "$PAYLOAD_FILE"
 
 body=$(echo "$resp" | head -n -1)
 code=$(echo "$resp" | tail -n1)
