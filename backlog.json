@@ -1,4 +1,19 @@
 {
-  "sprint": 0,
-  "stories": []
+  "backlog": [
+    {
+      "id": 1,
+      "title": "Fix login bug",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "Improve UI design",
+      "status": "in progress"
+    },
+    {
+      "id": 3,
+      "title": "Update user profile feature",
+      "status": "open"
+    }
+  ]
 }

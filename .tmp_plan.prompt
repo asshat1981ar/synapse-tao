@@ -1,9 +1,11 @@
+Given the following backlog:
 ```json
-{"sprint":0,"stories":[]}
+{"backlog":[{"id":1,"title":"Fix login bug","status":"open"},{"id":2,"title":"Improve UI design","status":"in progress"},{"id":3,"title":"Update user profile feature","status":"open"}]}
 ```
-Plan the next sprint for capacity **20** story‑points.
 
-Return **ONLY** valid JSON:
+Plan the next sprint for capacity **20** story‑points. Select tasks from the backlog that fit within the capacity. Prioritize tasks with higher priority and lower IDs first.
+
+Return **ONLY** valid JSON in the following format:
 {
   "sprint": <int>,
   "tasks": [

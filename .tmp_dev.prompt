@@ -1,7 +1,7 @@
 Generate code for this task in :
 
 ```json
-{"id":1,"title":"User Authentication Module","points":8}
+{"id":1,"title":"Fix login bug","points":8}
 ```
 
 Return a *unified diff* (`diff --git`) and include unit tests.

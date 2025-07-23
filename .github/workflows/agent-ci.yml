@@ -1,0 +1,46 @@
+name: Agent CI Labeler
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  label-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Apply labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const changedFiles = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number
+            });
+
+            const filenames = changedFiles.data.map(f => f.filename);
+            const labels = [];
+
+            if (filenames.some(f => f.includes('tests/') || f.endsWith('.spec.ts') || f.endsWith('.test.ts'))) {
+              labels.push('has-tests');
+            } else {
+              labels.push('needs-tests');
+            }
+
+            if (filenames.some(f => f.includes('taoLoopService') || f.includes('SelfCorrector'))) {
+              labels.push('copilot');
+            }
+
+            if (filenames.some(f => f.match(/security|auth|verify/i))) {
+              labels.push('security');
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              labels
+            });

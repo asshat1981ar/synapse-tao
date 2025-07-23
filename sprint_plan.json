@@ -3,23 +3,13 @@
   "tasks": [
     {
       "id": 1,
-      "title": "User Authentication Module",
+      "title": "Fix login bug",
       "points": 8
     },
     {
-      "id": 2,
-      "title": "Database Schema Design",
-      "points": 5
-    },
-    {
       "id": 3,
-      "title": "API Endpoint for User Data",
-      "points": 4
-    },
-    {
-      "id": 4,
-      "title": "Frontend UI for Login Page",
-      "points": 3
+      "title": "Update user profile feature",
+      "points": 12
     }
   ]
 }
