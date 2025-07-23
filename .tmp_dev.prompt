@@ -1,7 +1,35 @@
-Generate code for this task in :
+Generate code changes for this task in :
 
 ```json
 {"id":1,"title":"Fix login bug","points":8}
 ```
 
-Return a *unified diff* (`diff --git`) and include unit tests.
+Return **ONLY** valid JSON in the following format. If no changes are needed, return an empty array `[]`.
+
+```json
+[
+  {
+    "file": "path/to/file.js",
+    "changes": [
+      {
+        "type": "add",
+        "lineNumber": 10,
+        "content": "// New line of code"
+      },
+      {
+        "type": "remove",
+        "lineNumber": 5,
+        "content": "// Old line of code"
+      },
+      {
+        "type": "replace",
+        "lineNumber": 15,
+        "oldContent": "// Old content",
+        "newContent": "// New content"
+      }
+    ]
+  }
+]
+```
+
+For `add` operations, `lineNumber` is where the new content should be inserted. For `remove` and `replace` operations, `lineNumber` is the starting line of the `oldContent`.

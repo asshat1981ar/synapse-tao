@@ -1,0 +1,12 @@
+[
+  {
+    "file": "README.md",
+    "changes": [
+      {
+        "type": "add",
+        "lineNumber": 1,
+        "content": "# Test Change"
+      }
+    ]
+  }
+]

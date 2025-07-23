@@ -33,19 +33,17 @@ jq -c '.tasks[]' sprint_plan.json | while read task; do
   dev_diff=$(echo "$dev_raw" | jq -r '.choices[0].message.content' | strip_md_fences)
 
   if [[ -n "$dev_diff" ]]; then
-    echo "$dev_diff" > .tmp_dev_diff.patch
-    git reset --hard # Ensure a clean working directory
-    if git apply .tmp_dev_diff.patch; then
+    echo "$dev_diff" | scripts/apply_json_patch.sh
+    if [ $? -eq 0 ]; then
       echo "✅ Applied patch for task: $(echo "$task" | jq -r '.title')"
       git add .
       git commit -m "feat: $(echo "$task" | jq -r '.title')"
     else
       echo "❌ Failed to apply patch for task: $(echo "$task" | jq -r '.title')" >&2
-      echo "$dev_diff" > "failed_patch_$(echo "$task" | jq -r '.id').patch"
-      echo "Patch saved to failed_patch_$(echo "$task" | jq -r '.id').patch for manual review." >&2
+      echo "$dev_diff" > "failed_patch_$(echo "$task" | jq -r '.id').json"
+      echo "JSON changes saved to failed_patch_$(echo "$task" | jq -r '.id').json for manual review." >&2
       exit 1 # Exit immediately on patch application failure
     fi
-    rm .tmp_dev_diff.patch
   else
     echo "⚠️ No diff generated for task: $(echo "$task" | jq -r '.title')" >&2
   fi
