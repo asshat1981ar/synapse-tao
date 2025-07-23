@@ -33,16 +33,16 @@ jq -c '.tasks[]' sprint_plan.json | while read task; do
   dev_diff=$(echo "$dev_raw" | jq -r '.choices[0].message.content' | strip_md_fences)
 
   if [[ -n "$dev_diff" ]]; then
-    echo "$dev_diff" | scripts/apply_json_patch.sh
+    echo "$dev_diff" | scripts/process_dev_description.sh
     if [ $? -eq 0 ]; then
-      echo "✅ Applied patch for task: $(echo "$task" | jq -r '.title')"
+      echo "✅ Processed changes for task: $(echo "$task" | jq -r '.title')"
       git add .
       git commit -m "feat: $(echo "$task" | jq -r '.title')"
     else
-      echo "❌ Failed to apply patch for task: $(echo "$task" | jq -r '.title')" >&2
-      echo "$dev_diff" > "failed_patch_$(echo "$task" | jq -r '.id').json"
-      echo "JSON changes saved to failed_patch_$(echo "$task" | jq -r '.id').json for manual review." >&2
-      exit 1 # Exit immediately on patch application failure
+      echo "❌ Failed to process changes for task: $(echo "$task" | jq -r '.title')" >&2
+      echo "$dev_diff" > "failed_description_$(echo "$task" | jq -r '.id').txt"
+      echo "AI's description saved to failed_description_$(echo "$task" | jq -r '.id').txt for manual review." >&2
+      exit 1 # Exit immediately on processing failure
     fi
   else
     echo "⚠️ No diff generated for task: $(echo "$task" | jq -r '.title')" >&2
