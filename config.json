@@ -1,5 +1,5 @@
 {
   "concurrency_limit": 4,
   "chunk_size": 1024,
-  "token_overlap": 48
+  "token_overlap": 64
 }
