@@ -21,8 +21,8 @@ read -r -d '' payload <<JSON
 {
   "model": "${MODEL}",
   "messages": [
-    {"role": "system", "content": ${sys_prompt@Q}},
-    {"role": "user",  "content": ${usr_prompt@Q}}
+    {"role": "system", "content": $(cat "$sys_file" | jq -Rs .)},
+    {"role": "user",  "content": $(cat "$user_file" | jq -Rs .)}
   ],
   "temperature": 0.3,
   "response_format": {"type":"json_object"}
